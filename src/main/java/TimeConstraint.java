@@ -5,47 +5,64 @@
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.*;
 
 public class TimeConstraint extends Constraint<Date> {
+
+    boolean value = false;
+    FutureTask<Boolean> futureTask;
+    boolean started = false;
 
     public TimeConstraint(Date requirement, Date required_value) {
         super(requirement, required_value);
     }
 
-
     /*
-    * description: terminates if the requested time has been met or continue to update value to streams method
+    * description: terminates if the requested time has been met or continue to update value to stream method
     **/
     @Override
-    public Date dependsOn(Date requirement, Date required_value) {
-        Timer timer = new Timer();
-        long repeat = 1000;
-        boolean finished = false;
+    public Date start(Date requirement, Date required_value) {
+        if (requirement == null) throw new IllegalArgumentException(REQUIREMENT_NULL_PARAM_ERROR);
+        if (required_value == null) throw new IllegalArgumentException(REQUIREMENT_NULL_PARAM_ERROR);
 
-        if (finished) {
-            return super.dependsOn(requirement, required_value);
-        } else {
-            timer.schedule(new TimerTask() {
-                int counter = 0;
+        started = true;
 
-                @Override
-                public void run() {
-                    if (counter == 5) {
-                        System.out.println("finished");
-                    } else {
-                        System.out.println(counter);
-                        counter++;
-                    }
+        long diff = Math.abs(required_value.getTime() - requirement.getTime());
+
+        //create a future that passes current time to stream and final value to returns
+        futureTask = new FutureTask<>(
+                () -> {
+                    value = true;
+                    //for demo use
+                    Thread.sleep(diff);
+
+                    return value;
                 }
-            }, 0, repeat);
+        );
 
-            return dependsOn(new Date(), new Date());
+        ExecutorService service = Executors.newFixedThreadPool(1);
+        service.execute(futureTask);
 
-        }
+        return null;
     }
 
     @Override
-    public boolean returns() {
-        return false;
+    public Date streams() {
+
+        if (!started) throw new IllegalStateException(CONSTRAINT_NOT_STARTED);
+
+        while (!futureTask.isDone()) {
+            System.out.println("waiting");
+        }
+
+        System.out.println("done!");
+
+
+        return super.streams();
+    }
+
+    @Override
+    public Future<Boolean> returns() {
+        return futureTask;
     }
 }
