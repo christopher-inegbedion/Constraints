@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="TimeConstraintTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-05-07T12:51:11" hostname="ChristopherAir.lan" time="0.033">
+<testsuite name="TimeConstraintTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2020-05-08T18:16:32" hostname="ChristopherAir.lan" time="5.041">
   <properties/>
-  <testcase name="testNullValuesAreNotPassedAsParams" classname="TimeConstraintTest" time="0.014"/>
-  <testcase name="testNullValuesAreNotPassedToStartMethod" classname="TimeConstraintTest" time="0.006"/>
-  <testcase name="testConstraintHasBeenStarted" classname="TimeConstraintTest" time="0.007"/>
+  <testcase name="testTimeConstraintReturnsTrue" classname="TimeConstraintTest" time="5.035"/>
+  <testcase name="testNullValuesAreNotPassedAsParams" classname="TimeConstraintTest" time="0.001"/>
+  <testcase name="testFutureDateCannotBeBeforeCurrentDate" classname="TimeConstraintTest" time="0.002"/>
+  <testcase name="testNullValuesAreNotPassedToStartMethod" classname="TimeConstraintTest" time="0.0"/>
+  <testcase name="testThatConstraintHasBeenStartedBeforeUpdateMethodCalled" classname="TimeConstraintTest" time="0.0"/>
+  <testcase name="testConstraintHasBeenStartedBeforeReturnMethodCalled" classname="TimeConstraintTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
