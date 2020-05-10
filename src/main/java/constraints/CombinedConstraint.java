@@ -30,6 +30,8 @@ public class CombinedConstraint extends Constraint<Boolean> {
         if (constraint2 == null) throw new IllegalArgumentException(REQUIREMENT_NULL_PARAM_ERROR);
         if (combine_type != 0 & combine_type != 1) throw new IllegalArgumentException("The combine type has to be 0(AND) or 1(OR)");
 
+        TAG = "CombinedConstraint";
+
         this.constraint1 = constraint1;
         this.constraint2 = constraint2;
         this.combine_type = combine_type;
@@ -44,6 +46,8 @@ public class CombinedConstraint extends Constraint<Boolean> {
     public CombinedConstraint(Constraint<?> constraint1, int combine_type) {
         if (constraint1 == null) throw new IllegalArgumentException(REQUIREMENT_NULL_PARAM_ERROR);
         if (combine_type != 0 & combine_type != 1) throw new IllegalArgumentException("The combine type has to be 0(AND) or 1(OR)");
+
+        TAG = "CombinedConstraint";
 
         this.constraint1 = constraint1;
         this.combine_type = combine_type;
@@ -93,7 +97,7 @@ public class CombinedConstraint extends Constraint<Boolean> {
     /*
     * description: combine two constraints to provide a boolean value
     * */
-    private Boolean combinedConstraints() {
+    private Boolean combineConstraints() {
         if (has_combined_constraint) {
             //start constraint
             startConstraint(constraint1);
@@ -138,7 +142,7 @@ public class CombinedConstraint extends Constraint<Boolean> {
         if (!has_combined_constraint & constraint2 == null) throw new IllegalStateException("Combined constraint not found! Try running the hasCombinedConstraint method before the start method");
 
         futureTask = new FutureTask<>(
-                this::combinedConstraints
+                this::combineConstraints
         );
 
         ExecutorService service = Executors.newFixedThreadPool(1);

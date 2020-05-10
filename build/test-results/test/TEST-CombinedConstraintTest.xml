@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CombinedConstraintTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-05-08T18:16:37" hostname="ChristopherAir.lan" time="0.13">
+<testsuite name="CombinedConstraintTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-05-10T03:29:35" hostname="ChristopherAir.lan" time="0.019">
   <properties/>
-  <testcase name="test_That_Combined_Constraint_Value_Equals_Combined_Constraint_Return_Value_Is_Called" classname="CombinedConstraintTest" time="0.115"/>
+  <testcase name="test_That_Combined_Constraint_Value_Equals_Combined_Constraint_Return_Value_Is_Called" classname="CombinedConstraintTest" time="0.016"/>
   <testcase name="testThat0or1IsPassedAsCombineType" classname="CombinedConstraintTest" time="0.0"/>
   <testcase name="testThatNullCannotBePassedForCombinedConstraintAndSeparateConstraint" classname="CombinedConstraintTest" time="0.0"/>
-  <testcase name="testThatNullCannotBePassedFor2SeparateConstraints" classname="CombinedConstraintTest" time="0.005"/>
+  <testcase name="testThatNullCannotBePassedFor2SeparateConstraints" classname="CombinedConstraintTest" time="0.0"/>
   <testcase name="testIfhasCombinedConstraintMethodIsCalledForCombinedConstraint" classname="CombinedConstraintTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

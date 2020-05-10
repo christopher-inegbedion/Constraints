@@ -11,13 +11,13 @@ import static enums.CombinationTypes.*;
 
 public class Demo {
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) throws ParseException, ExecutionException, InterruptedException {
         SimpleDateFormat myFormatObj = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
         Date future;
         Date current_date;
 
-        String current_date_format = "7-05-2020 03:59:55";
+        String current_date_format = "7-05-2020 03:59:50";
         String future_date_format = "7-05-2020 04:00:00";
 
         current_date = myFormatObj.parse(current_date_format);
@@ -26,7 +26,7 @@ public class Demo {
         TimeConstraint timer_constraint = new TimeConstraint(current_date, future);
         ReadyConstraint readyConstraint = new ReadyConstraint(false);
         ReadyConstraint readyConstraint2 = new ReadyConstraint(true);
-
+/*
         CombinedConstraint combinedConstraint = new CombinedConstraint(timer_constraint, readyConstraint, OR.getCombination());
         combinedConstraint.start(combinedConstraint.combined_result);
 
@@ -42,12 +42,13 @@ public class Demo {
             System.out.println(combinedConstraint.returns().get());
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
-        }
+        }*/
 
         Stage stage = new Stage("Test");
         stage.addConstraint(timer_constraint);
         stage.addConstraint(readyConstraint);
         stage.addConstraint(readyConstraint2);
+
         stage.start();
 
         /*SimpleDateFormat myFormatObj = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");

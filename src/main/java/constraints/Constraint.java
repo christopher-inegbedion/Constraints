@@ -14,11 +14,13 @@ public abstract class Constraint<T> {
     public final static String REQUIREMENT_NULL_PARAM_ERROR = "A null value cannot be passed as an argument.";
     public final static String CONSTRAINT_NOT_STARTED = "constraints.Constraint has not been started.";
 
-    protected boolean started = false;
+    public String TAG;
+
+    public boolean started = false;
     public boolean has_combined_constraint = false;
 
-    T requirement;
-    T required_value;
+    public T requirement;
+    public T required_value;
 
     protected FutureTask<Boolean> futureTask;
 
@@ -44,12 +46,19 @@ public abstract class Constraint<T> {
         this.required_value = required_value;
     }
 
+    private void setTag(String tag) {
+        TAG = tag;
+    }
+
+    public String getTag() {
+        return TAG;
+    }
+
     /*
-    * description: used for boolean constraints.Constraint types. there is no updating and the value is passed directly to return
+    * description: used for boolean constraints. there is no updating and the value is passed directly to return
     *              method.
     * param: requirement -> value passed by user
     * */
-
     //FIXME: change the start method definition to -> startWithoutRequiredValue
     public void start(Object requirement) {
         if (requirement == null) throw new IllegalArgumentException(REQUIREMENT_NULL_PARAM_ERROR);
@@ -86,6 +95,7 @@ public abstract class Constraint<T> {
             while (!futureTask.isDone()) {
                 System.out.println(waiting_message);
             }
+            futureTask.cancel(true);
             System.out.println("done!");
 
         }

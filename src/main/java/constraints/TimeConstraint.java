@@ -11,6 +11,7 @@ public class TimeConstraint extends Constraint<Date> {
 
     public TimeConstraint(Date requirement, Date required_value) {
         super(requirement, required_value);
+        TAG = "TimeConstraint";
     }
 
     /*

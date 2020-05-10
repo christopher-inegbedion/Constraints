@@ -5,8 +5,10 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 
 public class ReadyConstraint extends Constraint<Boolean> {
+
     public ReadyConstraint(Boolean requirement) {
         super(requirement);
+        TAG = "ReadyConstraint";
     }
 
     @Override
